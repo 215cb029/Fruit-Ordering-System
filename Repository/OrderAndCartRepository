@@ -1,19 +1,12 @@
-package com.fruitapp.backend.model;
+package com.fruitapp.backend.repository;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-@Document
-@Getter
-@Setter
-public class Product {
-    @Id
-    private String productId;
-    private String productName;
-    private String productImageURL;
-    private String productDescription;
-    private double productPrice;
+import com.fruitapp.backend.model.OrderAndCart;
+
+public interface OrderAndCartRepository extends MongoRepository<OrderAndCart, String> {
+    List<OrderAndCart> findBycustomerIdAndStatus(String customerId, int status);
 }
+
